@@ -7,9 +7,10 @@ interface NavbarProps {
   onLoginClick?: () => void;
   isLoggedIn?: boolean;
   userName?: string;
+  isHidden?: boolean;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ onNavClick, onLoginClick, isLoggedIn, userName }) => {
+const Navbar: React.FC<NavbarProps> = ({ onNavClick, onLoginClick, isLoggedIn, userName, isHidden }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -58,9 +59,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, onLoginClick, isLoggedIn, u
     <nav className="fixed top-0 left-0 w-full z-[1000] flex justify-center pt-6 px-4 pointer-events-none">
       <motion.div 
         className={`pointer-events-auto flex justify-between items-center w-full max-w-6xl transition-all duration-500 rounded-full px-8 py-4 ${isScrolled ? 'glass-nav shadow-[0_10px_40px_-10px_rgba(0,0,0,0.7)]' : 'bg-transparent'}`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 1, ease: 'easeOut' }}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: isHidden ? -100 : 0, opacity: isHidden ? 0 : 1 }}
+        transition={{ duration: 0.8, ease: 'easeInOut' }}
       >
         <motion.div
           className="logo flex items-center cursor-pointer"

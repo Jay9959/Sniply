@@ -127,6 +127,7 @@ function App() {
         onLoginClick={() => isLoggedIn ? setIsAccountModalOpen(true) : setIsLoginModalOpen(true)}
         isLoggedIn={isLoggedIn}
         userName={userData.name}
+        isHidden={isPaymentModalOpen}
       />
       <main className="flex-1">
         <Hero />
